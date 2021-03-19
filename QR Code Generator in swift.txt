@@ -1,0 +1,19 @@
+if let myString = textField.text {
+            
+            //data is a constant
+            let data = myString.data(using: .ascii, allowLossyConversion:  false)
+            let filter = CIFilter(name: "CIQRCodeGenerator")
+            filter?.setValue(data, forKey: "inputMessage")
+            
+            let ciImage = filter?.outputImage
+            
+            let transform = CGAffineTransform(scaleX: 10, y: 10)
+            let transformImage = ciImage?.applying(transform)
+            
+            let image = UIImage(ciImage: transformImage!)
+            imageViewQR.image = image
+            
+
+            saveButton.isEnabled = true
+            
+        }
